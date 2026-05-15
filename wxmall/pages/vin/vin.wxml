@@ -1,0 +1,78 @@
+<view class="page-vin">
+  <view class="header">
+    <text class="header-title">VIN查配件</text>
+    <text class="header-desc">输入17位车架号，精准匹配配件</text>
+  </view>
+
+  <view class="search-box">
+    <input class="vin-input" type="text" placeholder="请输入17位VIN车架号" value="{{vin}}" bindinput="onVinInput" maxlength="17" />
+    <button class="search-btn" bindtap="doQuery" loading="{{loading}}" disabled="{{loading}}">
+      {{loading ? '查询中...' : '查询'}}
+    </button>
+  </view>
+
+  <view class="tips">
+    <text class="tips-title">💡 提示</text>
+    <text class="tips-text">VIN码（车架号）可在行驶证、前挡风玻璃左下角、B柱铭牌处找到</text>
+  </view>
+
+  <view class="result-section" wx:if="{{vehicle}}">
+    <view class="vehicle-card">
+      <view class="vehicle-header">
+        <text class="vehicle-icon">🚗</text>
+        <view class="vehicle-info">
+          <text class="vehicle-name">{{vehicle.brand}} {{vehicle.model}}</text>
+          <text class="vehicle-year">{{vehicle.year}}年 {{vehicle.engine}}</text>
+        </view>
+      </view>
+      <view class="vehicle-detail">
+        <view class="detail-row">
+          <text class="detail-label">品牌</text>
+          <text class="detail-value">{{vehicle.brand}}</text>
+        </view>
+        <view class="detail-row">
+          <text class="detail-label">车型</text>
+          <text class="detail-value">{{vehicle.model}}</text>
+        </view>
+        <view class="detail-row">
+          <text class="detail-label">排量</text>
+          <text class="detail-value">{{vehicle.displacement || '-'}}</text>
+        </view>
+        <view class="detail-row">
+          <text class="detail-label">变速箱</text>
+          <text class="detail-value">{{vehicle.transmission || '-'}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="parts-section" wx:if="{{parts.length > 0}}">
+      <view class="section-header">
+        <text class="section-title">适配配件 ({{parts.length}})</text>
+      </view>
+      <view class="parts-list">
+        <view class="part-card" wx:for="{{parts}}" wx:key="id" bindtap="goToDetail" data-id="{{item.id}}">
+          <image class="part-img" src="{{item.image || '/images/product.png'}}" mode="aspectFill" />
+          <view class="part-info">
+            <text class="part-name">{{item.name}}</text>
+            <text class="part-code">{{item.code}}</text>
+            <view class="part-bottom">
+              <text class="part-price">¥{{item.price}}</text>
+              <text class="part-stock" wx:if="{{item.stock > 0}}">库存{{item.stock}}</text>
+              <text class="part-stock out" wx:else>缺货</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="empty-parts" wx:if="{{parts.length === 0}}">
+      <text class="empty-icon">📦</text>
+      <text class="empty-text">暂未找到适配配件</text>
+    </view>
+  </view>
+
+  <view class="empty-result" wx:if="{{!vehicle && !loading && searched}}">
+    <text class="empty-icon">🔍</text>
+    <text class="empty-text">未找到该VIN码对应的车辆信息</text>
+  </view>
+</view>

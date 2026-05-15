@@ -1,0 +1,151 @@
+.page {
+  min-height: 100vh;
+  background: #f5f5f5;
+  padding-bottom: 40rpx;
+}
+
+.tabs {
+  display: flex;
+  background: #fff;
+  padding: 0 30rpx;
+  border-bottom: 1rpx solid #eee;
+}
+
+.tab {
+  flex: 1;
+  text-align: center;
+  padding: 24rpx 0;
+  font-size: 28rpx;
+  color: #666;
+  position: relative;
+}
+
+.tab.active {
+  color: #1677ff;
+  font-weight: bold;
+}
+
+.tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 48rpx;
+  height: 4rpx;
+  background: #1677ff;
+  border-radius: 2rpx;
+}
+
+.coupon-list {
+  padding: 20rpx;
+}
+
+.coupon-card {
+  background: #fff;
+  border-radius: 16rpx;
+  margin-bottom: 20rpx;
+  overflow: hidden;
+  display: flex;
+  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.04);
+}
+
+.coupon-left {
+  width: 200rpx;
+  background: linear-gradient(160deg, #1677ff, #4096ff);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30rpx 16rpx;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.coupon-left.used {
+  background: linear-gradient(160deg, #bbb, #999);
+}
+
+.coupon-amount {
+  font-size: 48rpx;
+  font-weight: bold;
+}
+
+.coupon-amount .unit {
+  font-size: 28rpx;
+}
+
+.coupon-type-label {
+  font-size: 22rpx;
+  opacity: 0.85;
+  margin-top: 6rpx;
+}
+
+.coupon-right {
+  flex: 1;
+  padding: 24rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.coupon-name {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.coupon-condition {
+  font-size: 24rpx;
+  color: #999;
+  margin-top: 8rpx;
+}
+
+.coupon-time {
+  font-size: 22rpx;
+  color: #bbb;
+  margin-top: 6rpx;
+}
+
+.coupon-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12rpx;
+}
+
+.coupon-status {
+  font-size: 22rpx;
+  color: #999;
+}
+
+.receive-btn {
+  width: 120rpx;
+  height: 52rpx;
+  line-height: 52rpx;
+  background: #1677ff;
+  color: #fff;
+  font-size: 24rpx;
+  border-radius: 26rpx;
+  text-align: center;
+  border: none;
+  padding: 0;
+}
+
+.receive-btn.received {
+  background: #ccc;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 200rpx;
+  color: #999;
+  font-size: 28rpx;
+}
+
+.empty-icon {
+  font-size: 80rpx;
+  margin-bottom: 20rpx;
+}

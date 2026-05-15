@@ -1,0 +1,35 @@
+<view class="page">
+  <view class="header-bar" wx:if="{{products.length > 0}}">
+    <text class="header-title">商品对比 ({{products.length}})</text>
+    <text class="clear-btn" bindtap="clearAll">清空</text>
+  </view>
+
+  <view class="compare-table" wx:if="{{products.length > 0}}">
+    <scroll-view scroll-x class="table-scroll">
+      <view class="table">
+        <view class="table-row header-row">
+          <view class="row-label">商品</view>
+          <view class="row-cell" wx:for="{{products}}" wx:key="id" style="width: {{products.length <= 2 ? '50%' : '280rpx'}};">
+            <image class="cell-img" src="{{item.image || '/images/placeholder.png'}}" mode="aspectFill" bindtap="goDetail" data-id="{{item.id}}" />
+            <text class="cell-name" bindtap="goDetail" data-id="{{item.id}}">{{item.name}}</text>
+            <text class="cell-price">¥{{item.price}}</text>
+            <text class="cell-remove" bindtap="removeProduct" data-id="{{item.id}}">移除</text>
+          </view>
+        </view>
+        <view class="table-row" wx:for="{{specs}}" wx:key="name">
+          <view class="row-label">{{item.name}}</view>
+          <view class="row-cell" wx:for="{{products}}" wx:key="id" wx:for-item="p" style="width: {{products.length <= 2 ? '50%' : '280rpx'}};">
+            {{item.values[p.id] || '-'}}
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <view class="empty" wx:if="{{products.length === 0}}">
+    <text class="empty-icon">⚖️</text>
+    <text class="empty-text">暂无对比商品</text>
+    <text class="empty-tip">在商品详情页点击"加入对比"即可添加</text>
+    <navigator url="/pages/product/list" class="go-btn">去挑选商品</navigator>
+  </view>
+</view>

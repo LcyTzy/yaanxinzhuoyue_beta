@@ -1,0 +1,34 @@
+<view class="page">
+  <view class="search-bar">
+    <input class="search-input" value="{{keyword}}" bindinput="onSearchInput" bindconfirm="onSearch" placeholder="搜索配件名称/型号/OE号" confirm-type="search" />
+    <text class="search-btn" bindtap="onSearch">搜索</text>
+  </view>
+
+  <scroll-view scroll-x class="category-bar" wx:if="{{categories.length > 0}}">
+    <text class="cat-item {{activeCategory === '' ? 'active' : ''}}" bindtap="switchCategory" data-id="">全部</text>
+    <text class="cat-item {{activeCategory === item.id ? 'active' : ''}}" wx:for="{{categories}}" wx:key="id" bindtap="switchCategory" data-id="{{item.id}}">{{item.name}}</text>
+  </scroll-view>
+
+  <view class="product-list" wx:if="{{products.length > 0}}">
+    <view class="product-item" wx:for="{{products}}" wx:key="id" bindtap="goDetail" data-id="{{item.id}}">
+      <image class="product-img" src="{{item.image || '/images/placeholder.png'}}" mode="aspectFill" binderror="onImageError" data-index="{{index}}" />
+      <view class="product-info">
+        <text class="product-name">{{item.name}}</text>
+        <text class="product-sub" wx:if="{{item.subName}}">{{item.subName}}</text>
+        <text class="product-oe" wx:if="{{item.oeNo}}">OE: {{item.oeNo}}</text>
+        <view class="product-bottom">
+          <text class="product-price">¥{{item.price}}</text>
+          <text class="cart-btn" catchtap="addToCart" data-item="{{item}}">加入购物车</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty" wx:if="{{!loading && products.length === 0}}">
+    <text class="empty-icon">🔩</text>
+    <text class="empty-text">暂无配件数据</text>
+  </view>
+
+  <view class="loading-more" wx:if="{{loading}}"><text>加载中...</text></view>
+  <view class="no-more" wx:if="{{!hasMore && products.length > 0}}"><text>— 没有更多了 —</text></view>
+</view>

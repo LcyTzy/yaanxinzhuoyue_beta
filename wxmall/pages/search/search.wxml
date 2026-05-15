@@ -1,0 +1,60 @@
+<view class="page">
+  <view class="search-header">
+    <view class="search-box">
+      <text class="search-icon">🔍</text>
+      <input class="search-input" placeholder="搜索汽配零件" value="{{keyword}}" bindinput="onSearchInput" bindconfirm="onSearch" focus="{{!keyword}}" confirm-type="search" />
+      <text class="search-clear" wx:if="{{keyword}}" bindtap="clearSearch">✕</text>
+    </view>
+    <text class="search-cancel" bindtap="goBack">取消</text>
+  </view>
+
+  <view wx:if="{{!searched}}">
+    <view class="hot-section" wx:if="{{history.length > 0}}">
+      <view class="section-header">
+        <text class="section-title">搜索历史</text>
+        <text class="section-action" bindtap="clearHistory">清空</text>
+      </view>
+      <view class="tag-list">
+        <view class="tag-item" wx:for="{{history}}" wx:key="*this" bindtap="searchHistory" data-keyword="{{item}}">
+          {{item}}
+        </view>
+      </view>
+    </view>
+
+    <view class="hot-section">
+      <view class="section-header">
+        <text class="section-title">热门搜索</text>
+      </view>
+      <view class="tag-list">
+        <view class="tag-item hot" wx:for="{{hotKeywords}}" wx:key="*this" bindtap="searchHistory" data-keyword="{{item}}">
+          {{item}}
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{searched && products.length === 0 && !loading}}" class="empty-state">
+    <text class="empty-icon">🔍</text>
+    <text>未找到相关商品</text>
+    <text class="text-sm text-gray mt-10">换个关键词试试吧</text>
+  </view>
+
+  <view wx:if="{{searched && products.length > 0}}" class="result-section">
+    <view class="result-header">
+      <text class="result-count">共找到 {{totalCount || products.length}} 件商品</text>
+    </view>
+    <view class="product-grid">
+      <view class="product-card" wx:for="{{products}}" wx:key="id" bindtap="goDetail" data-id="{{item.id}}">
+        <image class="product-img" src="{{item.image || '/images/placeholder.png'}}" mode="aspectFill" binderror="onProductImageError" data-index="{{index}}" />
+        <view class="product-info">
+          <text class="product-name ellipsis-2">{{item.name}}</text>
+          <view class="product-bottom">
+            <text class="price">{{item.price}}</text>
+            <text class="sales">已售{{item.sales || 0}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view wx:if="{{!hasMore && products.length > 0}}" class="load-end">— 没有更多了 —</view>
+  </view>
+</view>

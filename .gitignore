@@ -1,0 +1,36 @@
+target/
+*.class
+*.jar
+*.war
+*.iml
+.idea/
+.vscode/
+node_modules/
+dist/
+.DS_Store
+*.log
+logs/
+.env
+.env.local
+.env.*.local
+backups/
+uploads/
+*.sql.gz
+ssl/
+
+# 敏感配置（包含真实密钥，禁止提交）
+server-env.sh
+*.pem
+*.key
+*.p12
+*.jks
+*.keystore
+application-prod.yml
+
+# 微信小程序
+wxmall/project.private.config.json
+
+# 构建产物
+*.tar.gz
+*.zip
+*.rar

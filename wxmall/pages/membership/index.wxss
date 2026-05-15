@@ -1,0 +1,117 @@
+.page {
+  min-height: 100vh;
+  background: #f0f2f5;
+  padding-bottom: 40rpx;
+}
+
+.my-card {
+  margin: 20rpx;
+}
+
+.card-bg {
+  border-radius: 20rpx;
+  padding: 40rpx;
+  color: #fff;
+}
+
+.card-label {
+  font-size: 24rpx;
+  opacity: 0.8;
+}
+
+.card-level {
+  font-size: 48rpx;
+  font-weight: bold;
+  display: block;
+  margin: 10rpx 0;
+}
+
+.card-discount {
+  font-size: 28rpx;
+  display: block;
+  margin-bottom: 10rpx;
+}
+
+.card-desc {
+  font-size: 24rpx;
+  opacity: 0.8;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  padding: 30rpx 20rpx 16rpx;
+}
+
+.level-list {
+  margin: 0 20rpx;
+}
+
+.level-item {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin-bottom: 16rpx;
+}
+
+.level-icon {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36rpx;
+  flex-shrink: 0;
+}
+
+.level-info {
+  flex: 1;
+  margin-left: 20rpx;
+}
+
+.level-name {
+  font-size: 28rpx;
+  color: #333;
+  font-weight: 500;
+}
+
+.level-desc {
+  font-size: 24rpx;
+  color: #999;
+  display: block;
+  margin-top: 4rpx;
+}
+
+.level-condition {
+  font-size: 22rpx;
+  color: #1677ff;
+  display: block;
+  margin-top: 4rpx;
+}
+
+.level-discount {
+  font-size: 32rpx;
+  color: #ff4d4f;
+  font-weight: bold;
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 200rpx;
+}
+
+.empty-icon {
+  font-size: 80rpx;
+}
+
+.empty-text {
+  font-size: 28rpx;
+  color: #999;
+  margin-top: 20rpx;
+}

@@ -1,0 +1,32 @@
+<view class="page">
+  <view class="my-card" wx:if="{{myLevel}}">
+    <view class="card-bg" style="background: linear-gradient(135deg, {{myLevel.color || '#1677ff'}}, {{myLevel.color || '#1677ff'}}88);">
+      <text class="card-label">当前等级</text>
+      <text class="card-level">{{myLevel.name || myLevel.level}}</text>
+      <text class="card-discount" wx:if="{{discount > 0}}">享 {{discount * 10}} 折优惠</text>
+      <text class="card-desc" wx:if="{{myLevel.description}}">{{myLevel.description}}</text>
+    </view>
+  </view>
+
+  <view class="levels-section">
+    <text class="section-title">会员等级</text>
+    <view class="level-list">
+      <view class="level-item" wx:for="{{levels}}" wx:key="id">
+        <view class="level-icon" style="background: {{item.color || '#1677ff'}};">
+          <text>{{item.icon || '⭐'}}</text>
+        </view>
+        <view class="level-info">
+          <text class="level-name">{{item.name || item.level}}</text>
+          <text class="level-desc" wx:if="{{item.description}}">{{item.description}}</text>
+          <text class="level-condition" wx:if="{{item.minPoints}}">累计积分 ≥ {{item.minPoints}}</text>
+        </view>
+        <text class="level-discount" wx:if="{{item.discount}}">{{item.discount * 10}}折</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty" wx:if="{{!loading && !myLevel}}">
+    <text class="empty-icon">👑</text>
+    <text class="empty-text">暂无会员信息</text>
+  </view>
+</view>

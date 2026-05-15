@@ -1,0 +1,49 @@
+<view class="page">
+  <view class="address-card card" bindtap="chooseAddress">
+    <view wx:if="{{address}}" class="addr-content">
+      <view class="flex-between">
+        <text class="font-bold">{{address.receiverName || address.name}}</text>
+        <text>{{address.receiverPhone || address.phone}}</text>
+      </view>
+      <text class="addr-detail">{{address.fullAddress || address.address}}</text>
+    </view>
+    <view wx:else class="addr-empty">
+      <text class="addr-icon">📍</text>
+      <text>请选择收货地址</text>
+    </view>
+  </view>
+
+  <view class="card">
+    <text class="section-title">商品信息</text>
+    <view class="order-item" wx:for="{{items}}" wx:key="productId">
+      <image class="item-img" src="{{item.image || '/images/placeholder.png'}}" mode="aspectFill" binderror="onItemImageError" data-index="{{index}}" />
+      <view class="item-info">
+        <text class="item-name ellipsis-2">{{item.productName}}</text>
+        <view class="flex-between mt-10">
+          <text class="price">{{item.price}}</text>
+          <text class="text-gray">x{{item.quantity}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="card">
+    <text class="section-title">备注</text>
+    <input class="remark-input" placeholder="选填：订单备注信息" value="{{remark}}" bindinput="onRemarkInput" />
+  </view>
+
+  <view class="card">
+    <view class="flex-between">
+      <text>商品合计</text>
+      <text class="price">{{totalPrice}}</text>
+    </view>
+  </view>
+
+  <view class="submit-bar safe-bottom">
+    <view class="submit-info">
+      <text class="submit-label">实付金额</text>
+      <text class="price text-xl">{{totalPrice}}</text>
+    </view>
+    <button class="btn-primary submit-btn" bindtap="submitOrder">提交订单</button>
+  </view>
+</view>

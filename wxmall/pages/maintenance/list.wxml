@@ -1,0 +1,39 @@
+<view class="page">
+  <view class="header-bar">
+    <text class="header-title">保养记录</text>
+    <text class="apply-btn" bindtap="showForm">添加记录</text>
+  </view>
+
+  <view class="list" wx:if="{{records.length > 0}}">
+    <view class="item" wx:for="{{records}}" wx:key="id">
+      <view class="item-row"><text class="item-label">车辆</text><text class="item-value">{{item.vehicleInfo}}</text></view>
+      <view class="item-row"><text class="item-label">项目</text><text class="item-value">{{item.serviceType}}</text></view>
+      <view class="item-row"><text class="item-label">日期</text><text class="item-value">{{item.serviceDate}}</text></view>
+      <view class="item-row" wx:if="{{item.mileage}}"><text class="item-label">里程</text><text class="item-value">{{item.mileage}} km</text></view>
+      <view class="item-row" wx:if="{{item.cost}}"><text class="item-label">费用</text><text class="item-value price">¥{{item.cost}}</text></view>
+      <view class="item-row" wx:if="{{item.shopName}}"><text class="item-label">门店</text><text class="item-value">{{item.shopName}}</text></view>
+    </view>
+  </view>
+
+  <view class="empty" wx:if="{{!loading && records.length === 0}}">
+    <text class="empty-icon">🔧</text>
+    <text class="empty-text">暂无保养记录</text>
+  </view>
+
+  <view class="form-mask" wx:if="{{showForm}}" bindtap="hideForm">
+    <view class="form-panel" catchtap="">
+      <text class="form-title">添加保养记录</text>
+      <view class="form-item"><text class="label">车辆信息 *</text><input class="input" value="{{form.vehicleInfo}}" data-field="vehicleInfo" bindinput="onInput" placeholder="品牌型号/车牌号" /></view>
+      <view class="form-item"><text class="label">保养项目 *</text><input class="input" value="{{form.serviceType}}" data-field="serviceType" bindinput="onInput" placeholder="如：更换机油、机滤" /></view>
+      <view class="form-item"><text class="label">保养日期</text><input class="input" value="{{form.serviceDate}}" data-field="serviceDate" bindinput="onInput" placeholder="如：2025-01-15" /></view>
+      <view class="form-item"><text class="label">里程数(km)</text><input class="input" value="{{form.mileage}}" data-field="mileage" bindinput="onInput" placeholder="如：50000" type="number" /></view>
+      <view class="form-item"><text class="label">费用(元)</text><input class="input" value="{{form.cost}}" data-field="cost" bindinput="onInput" placeholder="如：500" type="digit" /></view>
+      <view class="form-item"><text class="label">保养门店</text><input class="input" value="{{form.shopName}}" data-field="shopName" bindinput="onInput" placeholder="门店名称" /></view>
+      <view class="form-item"><text class="label">备注</text><input class="input" value="{{form.remark}}" data-field="remark" bindinput="onInput" placeholder="备注信息" /></view>
+      <view class="form-btns">
+        <button class="cancel-btn" bindtap="hideForm">取消</button>
+        <button class="submit-btn" bindtap="submit">保存</button>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,67 @@
+<view class="page">
+  <view class="tabs">
+    <view class="tab {{activeTab === 'available' ? 'active' : ''}}" bindtap="switchTab" data-tab="available">可领取</view>
+    <view class="tab {{activeTab === 'my' ? 'active' : ''}}" bindtap="switchTab" data-tab="my">我的优惠券</view>
+  </view>
+
+  <view wx:if="{{activeTab === 'available'}}">
+    <view wx:if="{{availableList.length === 0 && !loading}}" class="empty-state">
+      <text class="empty-icon">🎫</text>
+      <text>暂无可领取的优惠券</text>
+    </view>
+    <view class="coupon-list" wx:else>
+      <view class="coupon-card" wx:for="{{availableList}}" wx:key="id">
+        <view class="coupon-left">
+          <view class="coupon-amount" wx:if="{{item.type === 1}}">
+            <text class="unit">¥</text>{{item.discountAmount}}
+          </view>
+          <view class="coupon-amount" wx:else>
+            <text>{{(10 - item.discountRate * 10).toFixed(0)}}</text><text class="unit">折</text>
+          </view>
+          <text class="coupon-type-label">{{item.type === 1 ? '满减券' : '折扣券'}}</text>
+        </view>
+        <view class="coupon-right">
+          <view>
+            <text class="coupon-name">{{item.name}}</text>
+            <text class="coupon-condition">满{{item.minAmount}}元可用</text>
+            <text class="coupon-time">{{item.startTime}} ~ {{item.endTime}}</text>
+          </view>
+          <view class="coupon-bottom">
+            <text class="coupon-status">已领{{item.receiveCount}}/{{item.totalCount}}</text>
+            <button class="receive-btn" bindtap="receiveCoupon" data-id="{{item.id}}">立即领取</button>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{activeTab === 'my'}}">
+    <view wx:if="{{myList.length === 0 && !loading}}" class="empty-state">
+      <text class="empty-icon">🎫</text>
+      <text>暂无优惠券</text>
+    </view>
+    <view class="coupon-list" wx:else>
+      <view class="coupon-card" wx:for="{{myList}}" wx:key="id">
+        <view class="coupon-left {{item.status === 1 ? 'used' : ''}}">
+          <view class="coupon-amount" wx:if="{{item.type === 1}}">
+            <text class="unit">¥</text>{{item.discountAmount}}
+          </view>
+          <view class="coupon-amount" wx:else>
+            <text>{{(10 - item.discountRate * 10).toFixed(0)}}</text><text class="unit">折</text>
+          </view>
+          <text class="coupon-type-label">{{item.type === 1 ? '满减券' : '折扣券'}}</text>
+        </view>
+        <view class="coupon-right">
+          <view>
+            <text class="coupon-name">{{item.name}}</text>
+            <text class="coupon-condition">满{{item.minAmount}}元可用</text>
+            <text class="coupon-time">{{item.startTime}} ~ {{item.endTime}}</text>
+          </view>
+          <view class="coupon-bottom">
+            <text class="coupon-status">{{item.status === 0 ? '未使用' : (item.status === 1 ? '已使用' : '已过期')}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

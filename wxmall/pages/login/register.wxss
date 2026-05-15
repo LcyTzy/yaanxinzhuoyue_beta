@@ -1,0 +1,30 @@
+@import '../login/login.wxss';
+
+.code-input {
+  flex: 1;
+}
+
+.captcha-img {
+  width: 160rpx;
+  height: 60rpx;
+  margin-left: 16rpx;
+  border-radius: 8rpx;
+  flex-shrink: 0;
+}
+
+.header {
+  padding-top: 80rpx;
+  padding-bottom: 50rpx;
+}
+
+.title {
+  color: #fff;
+  font-size: 40rpx;
+  font-weight: bold;
+}
+
+.subtitle {
+  color: rgba(255,255,255,0.75);
+  font-size: 26rpx;
+  margin-top: 12rpx;
+}

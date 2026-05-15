@@ -1,0 +1,33 @@
+<view class="page">
+  <view class="header">
+    <text class="title">库存管理</text>
+  </view>
+
+  <view class="search-bar">
+    <input class="search-input" type="text" placeholder="搜索商品名称..." value="{{keyword}}" bindinput="onSearchInput" bindconfirm="doSearch" />
+    <button class="search-btn" bindtap="doSearch">搜索</button>
+  </view>
+
+  <view class="list">
+    <view class="item" wx:for="{{list}}" wx:key="id">
+      <image class="item-img" src="{{item.image || '/images/product.png'}}" mode="aspectFill" />
+      <view class="item-info">
+        <text class="item-name">{{item.name}}</text>
+        <text class="item-code">{{item.code || ''}}</text>
+        <view class="item-stock">
+          <text class="stock-label">库存：</text>
+          <text class="stock-num {{item.stock < 10 ? 'warn' : ''}}">{{item.stock || 0}}</text>
+        </view>
+      </view>
+      <view class="item-actions">
+        <button class="action-btn in" bindtap="stockIn" data-id="{{item.id}}">入库</button>
+        <button class="action-btn out" bindtap="stockOut" data-id="{{item.id}}">出库</button>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty" wx:if="{{list.length === 0 && !loading}}">
+    <text class="empty-icon">📋</text>
+    <text class="empty-text">暂无库存数据</text>
+  </view>
+</view>

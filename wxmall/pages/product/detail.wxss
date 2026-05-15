@@ -1,0 +1,162 @@
+.page {
+  background: #f5f5f5;
+}
+
+.main-image {
+  width: 100%;
+  height: 600rpx;
+  background: #eee;
+}
+
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14rpx;
+}
+
+.stock {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.product-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  line-height: 1.5;
+  display: block;
+}
+
+.meta {
+  font-size: 24rpx;
+  color: #999;
+  margin-top: 8rpx;
+  display: block;
+}
+
+.section-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20rpx;
+  padding-left: 20rpx;
+  border-left: 6rpx solid #1677ff;
+}
+
+.vehicle-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+}
+
+.vehicle-item {
+  background: #f8f8f8;
+  padding: 14rpx 20rpx;
+  border-radius: 10rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.v-name {
+  font-size: 24rpx;
+  color: #333;
+}
+
+.v-pos {
+  font-size: 20rpx;
+  color: #999;
+  margin-top: 4rpx;
+}
+
+.detail-content {
+  font-size: 28rpx;
+  color: #666;
+  line-height: 1.8;
+}
+
+.review-item {
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #f5f5f5;
+}
+
+.review-item:last-child {
+  border-bottom: none;
+}
+
+.stars {
+  color: #ffc107;
+}
+
+.star-active {
+  color: #ffc107;
+}
+
+.star {
+  color: #ddd;
+}
+
+.review-text {
+  display: block;
+  margin-top: 10rpx;
+  font-size: 26rpx;
+  color: #666;
+  line-height: 1.6;
+}
+
+.bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  padding: 14rpx 24rpx;
+  box-shadow: 0 -2rpx 12rpx rgba(0,0,0,0.05);
+  z-index: 100;
+}
+
+.quantity-control {
+  display: flex;
+  align-items: center;
+  border: 1rpx solid #eee;
+  border-radius: 8rpx;
+  overflow: hidden;
+}
+
+.qty-btn {
+  width: 52rpx;
+  height: 52rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32rpx;
+  color: #666;
+  background: #f9f9f9;
+}
+
+.qty-num {
+  width: 64rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #333;
+}
+
+.cart-btn {
+  flex: 1;
+  margin-left: 16rpx;
+  height: 64rpx;
+  line-height: 64rpx;
+  font-size: 26rpx;
+  padding: 0;
+}
+
+.buy-btn {
+  flex: 1;
+  margin-left: 12rpx;
+  height: 64rpx;
+  line-height: 64rpx;
+  font-size: 26rpx;
+  padding: 0;
+}

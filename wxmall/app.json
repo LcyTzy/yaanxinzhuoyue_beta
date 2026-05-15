@@ -1,0 +1,71 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/category/category",
+    "pages/cart/cart",
+    "pages/user/user",
+    "pages/product/detail",
+    "pages/product/list",
+    "pages/order/list",
+    "pages/order/detail",
+    "pages/order/create",
+    "pages/payment/payment",
+    "pages/address/list",
+    "pages/address/edit",
+    "pages/login/login",
+    "pages/login/register",
+    "pages/login/forgot",
+    "pages/search/search",
+    "pages/vin/vin",
+    "pages/inventory/list",
+    "pages/purchase/list",
+    "pages/coupon/list",
+    "pages/points/list",
+    "pages/points/mall",
+    "pages/profile/edit",
+    "pages/favorite/list",
+    "pages/notification/list",
+    "pages/membership/index",
+    "pages/invoice/list",
+    "pages/service/appointment",
+    "pages/maintenance/list",
+    "pages/inquiry/list",
+    "pages/insurance/list",
+    "pages/compare/index",
+    "pages/parts/list"
+  ],
+  "window": {
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "新卓阅汽配",
+    "navigationBarBackgroundColor": "#1a1a2e",
+    "backgroundColor": "#f0f2f5"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#1677ff",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/category/category",
+        "text": "分类"
+      },
+      {
+        "pagePath": "pages/cart/cart",
+        "text": "购物车"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "text": "我的"
+      }
+    ]
+  },
+  "style": "v2",
+  "componentFramework": "glass-easel",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

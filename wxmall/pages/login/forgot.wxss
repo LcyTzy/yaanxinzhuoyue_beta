@@ -1,0 +1,41 @@
+@import '../login/login.wxss';
+
+.code-input {
+  flex: 1;
+}
+
+.code-btn {
+  width: 180rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 24rpx;
+  background: #1677ff;
+  color: #fff;
+  border-radius: 30rpx;
+  border: none;
+  padding: 0;
+  flex-shrink: 0;
+  margin-left: 16rpx;
+}
+
+.code-btn.disabled {
+  background: #ccc;
+  color: #fff;
+}
+
+.header {
+  padding-top: 80rpx;
+  padding-bottom: 50rpx;
+}
+
+.title {
+  color: #fff;
+  font-size: 40rpx;
+  font-weight: bold;
+}
+
+.subtitle {
+  color: rgba(255,255,255,0.75);
+  font-size: 26rpx;
+  margin-top: 12rpx;
+}

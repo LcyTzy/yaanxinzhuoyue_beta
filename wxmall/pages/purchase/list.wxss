@@ -1,0 +1,156 @@
+.page {
+  min-height: 100vh;
+  background: #f0f2f5;
+  padding-bottom: 40rpx;
+}
+
+.header {
+  background: linear-gradient(160deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  padding: 30rpx;
+}
+
+.title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #fff;
+}
+
+.tabs {
+  display: flex;
+  background: #fff;
+  padding: 0 20rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.tab {
+  flex: 1;
+  text-align: center;
+  padding: 24rpx 0;
+  font-size: 26rpx;
+  color: #666;
+  position: relative;
+}
+
+.tab.active {
+  color: #1677ff;
+  font-weight: 500;
+}
+
+.tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40rpx;
+  height: 4rpx;
+  background: #1677ff;
+  border-radius: 2rpx;
+}
+
+.list {
+  padding: 16rpx 20rpx;
+}
+
+.item {
+  background: #fff;
+  border-radius: 14rpx;
+  padding: 24rpx;
+  margin-bottom: 12rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0,0,0,0.03);
+}
+
+.item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14rpx;
+}
+
+.item-no {
+  font-size: 26rpx;
+  color: #333;
+  font-weight: 500;
+}
+
+.item-status {
+  font-size: 22rpx;
+  padding: 4rpx 16rpx;
+  border-radius: 20rpx;
+}
+
+.status-0 { background: #fff8f0; color: #fa8c16; }
+.status-1 { background: #e6f4ff; color: #1677ff; }
+.status-2 { background: #f0fff0; color: #52c41a; }
+
+.item-body {
+  margin-bottom: 14rpx;
+}
+
+.item-name {
+  font-size: 26rpx;
+  color: #333;
+  display: block;
+}
+
+.item-qty {
+  font-size: 22rpx;
+  color: #999;
+  margin-top: 4rpx;
+  display: block;
+}
+
+.item-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.item-amount {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #1a1a2e;
+}
+
+.item-time {
+  font-size: 22rpx;
+  color: #bbb;
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 100rpx 0;
+}
+
+.empty-icon {
+  font-size: 64rpx;
+  opacity: 0.3;
+  margin-bottom: 16rpx;
+}
+
+.empty-text {
+  font-size: 26rpx;
+  color: #bbb;
+}
+
+.fab {
+  position: fixed;
+  right: 40rpx;
+  bottom: 120rpx;
+  width: 100rpx;
+  height: 100rpx;
+  background: linear-gradient(135deg, #1677ff, #4096ff);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6rpx 20rpx rgba(22,119,255,0.4);
+}
+
+.fab-icon {
+  font-size: 48rpx;
+  color: #fff;
+  font-weight: 300;
+}

@@ -1,0 +1,161 @@
+<view class="page">
+  <view class="user-header" wx:if="{{isLogin}}">
+    <image class="avatar" src="{{userInfo.avatar || '/images/default-avatar.png'}}" mode="aspectFill" binderror="onAvatarError" />
+    <view class="user-info">
+      <text class="nickname">{{userInfo.nickname || userInfo.phone || '用户'}}</text>
+      <text class="phone">{{userInfo.phone || ''}}</text>
+    </view>
+    <text class="edit-link" bindtap="goEditProfile">编辑资料 ›</text>
+  </view>
+
+  <view class="user-header" wx:else bindtap="goLogin">
+    <image class="avatar" src="/images/default-avatar.png" mode="aspectFill" />
+    <view class="user-info">
+      <text class="nickname">点击登录</text>
+      <text class="phone">登录后享受更多服务</text>
+    </view>
+    <text class="edit-link">›</text>
+  </view>
+
+  <view class="order-section card">
+    <view class="section-header">
+      <text class="section-title">我的订单</text>
+      <text class="section-more" bindtap="goOrders">全部订单 ›</text>
+    </view>
+    <view class="order-grid">
+      <view class="order-icon-item" bindtap="goOrders" data-tab="1">
+        <text class="oi-icon">💳</text>
+        <text class="oi-label">待付款</text>
+        <view class="badge" wx:if="{{orderCounts.pendingPayment}}">{{orderCounts.pendingPayment}}</view>
+      </view>
+      <view class="order-icon-item" bindtap="goOrders" data-tab="2">
+        <text class="oi-icon">📦</text>
+        <text class="oi-label">待发货</text>
+        <view class="badge" wx:if="{{orderCounts.pendingShipping}}">{{orderCounts.pendingShipping}}</view>
+      </view>
+      <view class="order-icon-item" bindtap="goOrders" data-tab="3">
+        <text class="oi-icon">🚚</text>
+        <text class="oi-label">待收货</text>
+        <view class="badge" wx:if="{{orderCounts.pendingReceiving}}">{{orderCounts.pendingReceiving}}</view>
+      </view>
+      <view class="order-icon-item" bindtap="goOrders" data-tab="4">
+        <text class="oi-icon">✅</text>
+        <text class="oi-label">已完成</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="menu-section card">
+    <view class="menu-item" bindtap="goFavorites">
+      <text class="menu-icon">❤️</text>
+      <text class="menu-text">我的收藏</text>
+      <text class="menu-arrow">›</text>
+    </view>
+    <view class="menu-item" bindtap="goNotifications">
+      <text class="menu-icon">🔔</text>
+      <text class="menu-text">消息通知</text>
+      <text class="menu-arrow">›</text>
+    </view>
+    <view class="menu-item" bindtap="goAddress">
+      <text class="menu-icon">📍</text>
+      <text class="menu-text">收货地址</text>
+      <text class="menu-arrow">›</text>
+    </view>
+    <view class="menu-item" bindtap="goCoupons">
+      <text class="menu-icon">🎫</text>
+      <text class="menu-text">优惠券</text>
+      <text class="menu-arrow">›</text>
+    </view>
+    <view class="menu-item" bindtap="goPointsMall">
+      <text class="menu-icon">⭐</text>
+      <text class="menu-text">积分商城</text>
+      <text class="menu-arrow">›</text>
+    </view>
+    <view class="menu-item" bindtap="goMembership">
+      <text class="menu-icon">👑</text>
+      <text class="menu-text">会员中心</text>
+      <text class="menu-arrow">›</text>
+    </view>
+  </view>
+
+  <view class="menu-section card">
+    <view class="section-header">
+      <text class="section-title">服务工具</text>
+    </view>
+    <view class="menu-item" bindtap="goParts">
+      <text class="menu-icon">🔩</text>
+      <text class="menu-text">配件中心</text>
+      <text class="menu-arrow">›</text>
+    </view>
+    <view class="menu-item" bindtap="goCompare">
+      <text class="menu-icon">⚖️</text>
+      <text class="menu-text">商品对比</text>
+      <text class="menu-arrow">›</text>
+    </view>
+    <view class="menu-item" bindtap="goInquiry">
+      <text class="menu-icon">💬</text>
+      <text class="menu-text">在线询价</text>
+      <text class="menu-arrow">›</text>
+    </view>
+    <view class="menu-item" bindtap="goService">
+      <text class="menu-icon">📅</text>
+      <text class="menu-text">服务预约</text>
+      <text class="menu-arrow">›</text>
+    </view>
+    <view class="menu-item" bindtap="goMaintenance">
+      <text class="menu-icon">🔧</text>
+      <text class="menu-text">保养记录</text>
+      <text class="menu-arrow">›</text>
+    </view>
+    <view class="menu-item" bindtap="goInsurance">
+      <text class="menu-icon">🛡️</text>
+      <text class="menu-text">保险/年检</text>
+      <text class="menu-arrow">›</text>
+    </view>
+    <view class="menu-item" bindtap="goInvoice">
+      <text class="menu-icon">🧾</text>
+      <text class="menu-text">发票管理</text>
+      <text class="menu-arrow">›</text>
+    </view>
+  </view>
+
+  <view class="menu-section card">
+    <view class="menu-item" bindtap="goAbout">
+      <text class="menu-icon">ℹ️</text>
+      <text class="menu-text">关于我们</text>
+      <text class="menu-arrow">›</text>
+    </view>
+  </view>
+
+  <view class="menu-section card" wx:if="{{isAdmin}}">
+    <view class="section-header">
+      <text class="section-title">管理后台</text>
+    </view>
+    <view class="menu-item" bindtap="goToInventory">
+      <text class="menu-icon">📋</text>
+      <text class="menu-text">库存管理</text>
+      <text class="menu-arrow">›</text>
+    </view>
+    <view class="menu-item" bindtap="goToPurchaseOrders">
+      <text class="menu-icon">📥</text>
+      <text class="menu-text">采购订单</text>
+      <text class="menu-arrow">›</text>
+    </view>
+    <view class="menu-item" bindtap="goToSalesOrders">
+      <text class="menu-icon">📤</text>
+      <text class="menu-text">销售订单</text>
+      <text class="menu-arrow">›</text>
+    </view>
+    <view class="menu-item" bindtap="goToProducts">
+      <text class="menu-icon">📦</text>
+      <text class="menu-text">商品管理</text>
+      <text class="menu-arrow">›</text>
+    </view>
+  </view>
+
+  <view class="menu-section card" wx:if="{{isLogin}}">
+    <view class="menu-item logout-item" bindtap="logout">
+      <text class="menu-text" style="color:#1677ff;text-align:center;flex:1;">退出登录</text>
+    </view>
+  </view>
+</view>

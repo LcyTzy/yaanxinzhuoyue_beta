@@ -1,0 +1,40 @@
+<view class="page">
+  <view class="header-bar">
+    <text class="header-title">我的询价</text>
+    <text class="apply-btn" bindtap="showForm">发起询价</text>
+  </view>
+
+  <view class="list" wx:if="{{inquiries.length > 0}}">
+    <view class="item" wx:for="{{inquiries}}" wx:key="id">
+      <view class="item-row"><text class="item-label">配件名称</text><text class="item-value">{{item.productName}}</text></view>
+      <view class="item-row" wx:if="{{item.brand}}"><text class="item-label">品牌</text><text class="item-value">{{item.brand}}</text></view>
+      <view class="item-row" wx:if="{{item.model}}"><text class="item-label">适用车型</text><text class="item-value">{{item.model}}</text></view>
+      <view class="item-row" wx:if="{{item.partNo}}"><text class="item-label">配件号</text><text class="item-value">{{item.partNo}}</text></view>
+      <view class="item-row"><text class="item-label">数量</text><text class="item-value">{{item.quantity}}</text></view>
+      <view class="item-row"><text class="item-label">状态</text><text class="item-value status">{{item.status === 0 ? '待回复' : item.status === 1 ? '已回复' : '已关闭'}}</text></view>
+      <view class="item-row" wx:if="{{item.reply}}"><text class="item-label">回复</text><text class="item-value reply">{{item.reply}}</text></view>
+    </view>
+  </view>
+
+  <view class="empty" wx:if="{{!loading && inquiries.length === 0}}">
+    <text class="empty-icon">💬</text>
+    <text class="empty-text">暂无询价记录</text>
+  </view>
+
+  <view class="form-mask" wx:if="{{showForm}}" bindtap="hideForm">
+    <view class="form-panel" catchtap="">
+      <text class="form-title">发起询价</text>
+      <view class="form-item"><text class="label">配件名称 *</text><input class="input" value="{{form.productName}}" data-field="productName" bindinput="onInput" placeholder="请输入需要的配件名称" /></view>
+      <view class="form-item"><text class="label">品牌</text><input class="input" value="{{form.brand}}" data-field="brand" bindinput="onInput" placeholder="如：博世、曼牌" /></view>
+      <view class="form-item"><text class="label">适用车型</text><input class="input" value="{{form.model}}" data-field="model" bindinput="onInput" placeholder="如：大众速腾 2023款" /></view>
+      <view class="form-item"><text class="label">配件号/OE号</text><input class="input" value="{{form.partNo}}" data-field="partNo" bindinput="onInput" placeholder="如有请填写" /></view>
+      <view class="form-item"><text class="label">数量</text><input class="input" value="{{form.quantity}}" data-field="quantity" bindinput="onInput" placeholder="1" type="number" /></view>
+      <view class="form-item"><text class="label">联系电话 *</text><input class="input" value="{{form.contactPhone}}" data-field="contactPhone" bindinput="onInput" placeholder="请输入联系电话" type="number" /></view>
+      <view class="form-item"><text class="label">备注</text><input class="input" value="{{form.remark}}" data-field="remark" bindinput="onInput" placeholder="其他要求" /></view>
+      <view class="form-btns">
+        <button class="cancel-btn" bindtap="hideForm">取消</button>
+        <button class="submit-btn" bindtap="submit">提交询价</button>
+      </view>
+    </view>
+  </view>
+</view>

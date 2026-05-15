@@ -1,0 +1,45 @@
+<view class="page">
+  <view class="points-header">
+    <text class="points-balance">{{points}}</text>
+    <text class="points-label">当前积分</text>
+    <view class="sign-row">
+      <button class="sign-btn {{signedToday ? 'signed' : ''}}" bindtap="doSignIn" disabled="{{signedToday}}">
+        {{signedToday ? '今日已签到' : '每日签到'}}
+      </button>
+    </view>
+    <text class="sign-tip" wx:if="{{!signedToday}}">签到可获得积分奖励</text>
+  </view>
+
+  <view class="section-card" wx:if="{{exchangeProducts.length > 0}}">
+    <text class="section-title">积分兑换</text>
+    <view class="exchange-grid">
+      <view class="exchange-item" wx:for="{{exchangeProducts}}" wx:key="id">
+        <image class="exchange-img" src="{{item.image || '/images/placeholder.png'}}" mode="aspectFill" binderror="onExchangeImageError" data-index="{{index}}" />
+        <text class="exchange-name">{{item.name}}</text>
+        <text class="exchange-points">{{item.points}}积分</text>
+        <button class="exchange-btn {{points < item.points ? 'disabled' : ''}}" bindtap="doExchange" data-id="{{item.id}}" data-points="{{item.points}}" disabled="{{points < item.points}}">
+          {{points < item.points ? '积分不足' : '立即兑换'}}
+        </button>
+      </view>
+    </view>
+  </view>
+
+  <view class="section-card">
+    <text class="section-title">积分记录</text>
+    <view wx:if="{{records.length === 0 && !loading}}" class="empty-state">
+      <text class="empty-icon">📋</text>
+      <text>暂无积分记录</text>
+    </view>
+    <view wx:else>
+      <view class="record-item" wx:for="{{records}}" wx:key="id">
+        <view class="record-left">
+          <text class="record-desc">{{item.description || item.type || '积分变动'}}</text>
+          <text class="record-time">{{item.createTime}}</text>
+        </view>
+        <text class="record-points {{item.points > 0 ? 'positive' : 'negative'}}">
+          {{item.points > 0 ? '+' : ''}}{{item.points}}
+        </text>
+      </view>
+    </view>
+  </view>
+</view>

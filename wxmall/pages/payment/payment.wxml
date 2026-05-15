@@ -1,0 +1,61 @@
+<view class="page">
+  <view class="pay-header">
+    <view class="pay-amount-label">待支付金额</view>
+    <view class="pay-amount">¥{{amount}}</view>
+    <view class="pay-order-no">订单号: {{orderNo}}</view>
+  </view>
+
+  <view class="card" wx:if="{{status === 'pending'}}">
+    <view class="section-title">选择支付方式</view>
+    <view class="pay-methods">
+      <view class="pay-method active">
+        <view class="pm-icon-wrap pm-green">
+          <text class="pm-icon">💚</text>
+        </view>
+        <view class="pm-info">
+          <text class="pm-name">微信支付</text>
+          <text class="pm-desc">推荐使用微信支付</text>
+        </view>
+        <view class="pm-check">✓</view>
+      </view>
+    </view>
+    <button class="btn-primary pay-btn" bindtap="createPayment" loading="{{creating}}" disabled="{{creating}}">
+      {{creating ? '创建支付中...' : '确认支付'}}
+    </button>
+  </view>
+
+  <view class="card" wx:if="{{status === 'waiting'}}">
+    <view class="section-title">扫码支付</view>
+    <view class="qr-wrap">
+      <image class="qr-img" src="{{qrCode}}" mode="aspectFit" wx:if="{{qrCode}}" />
+      <view class="qr-loading" wx:else>
+        <text>加载二维码中...</text>
+      </view>
+      <text class="qr-tip">请使用微信扫一扫完成支付</text>
+    </view>
+    <view class="pay-actions">
+      <button class="btn-outline" bindtap="cancelPay">取消支付</button>
+      <button class="btn-primary" bindtap="checkPayStatus">已支付完成</button>
+    </view>
+  </view>
+
+  <view class="card" wx:if="{{status === 'success'}}">
+    <view class="success-wrap">
+      <view class="success-icon">✅</view>
+      <text class="success-title">支付成功</text>
+      <text class="success-desc">感谢您的购买，我们将尽快为您发货</text>
+      <button class="btn-primary" bindtap="goOrders">查看订单</button>
+    </view>
+  </view>
+
+  <view class="card" wx:if="{{status === 'failed'}}">
+    <view class="success-wrap">
+      <view class="success-icon" style="font-size:100rpx;">❌</view>
+      <text class="success-title">支付失败</text>
+      <text class="success-desc">{{errorMsg || '支付未完成，请重试'}}</text>
+      <button class="btn-primary" bindtap="retryPay">重新支付</button>
+    </view>
+  </view>
+
+  <view class="safe-area"></view>
+</view>

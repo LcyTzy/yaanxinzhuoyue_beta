@@ -1,0 +1,7 @@
+spring:
+  datasource:
+    password: ${DB_PASSWORD}
+
+logging:
+  level:
+    com.zhantu: warn

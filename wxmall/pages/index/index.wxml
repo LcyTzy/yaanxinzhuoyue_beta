@@ -1,0 +1,147 @@
+<view class="page-index">
+  <view class="header">
+    <view class="header-top">
+      <view class="header-greeting">
+        <text class="greeting-title">新卓阅汽配</text>
+        <text class="greeting-sub" wx:if="{{isAdmin}}">管理后台</text>
+        <text class="greeting-sub" wx:else>专业汽车配件商城</text>
+      </view>
+    </view>
+    <view class="header-search" bindtap="goToSearch">
+      <text class="search-icon">🔍</text>
+      <text class="search-placeholder">搜索汽配零件、车型...</text>
+    </view>
+  </view>
+
+  <swiper class="banner-swiper" wx:if="{{banners.length > 0}}" indicator-dots indicator-color="rgba(255,255,255,0.4)" indicator-active-color="#fff" autoplay circular interval="4000">
+    <swiper-item wx:for="{{banners}}" wx:key="id">
+      <image class="banner-img" src="{{item.imageUrl}}" mode="aspectFill" binderror="onBannerError" data-index="{{index}}" />
+    </swiper-item>
+  </swiper>
+
+  <block wx:if="{{isAdmin}}">
+    <view class="stats-row" wx:if="{{stats}}">
+      <view class="stat-item">
+        <text class="stat-num">{{stats.productCount || 0}}</text>
+        <text class="stat-label">商品总数</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-num">{{stats.inventoryCount || 0}}</text>
+        <text class="stat-label">库存总量</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-num warn">{{stats.lowInventoryCount || 0}}</text>
+        <text class="stat-label">低库存预警</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-num">{{stats.salesOrderCount || 0}}</text>
+        <text class="stat-label">销售订单</text>
+      </view>
+    </view>
+
+    <view class="section">
+      <view class="section-header">
+        <text class="section-title">管理功能</text>
+      </view>
+      <view class="quick-grid">
+        <view class="quick-item" bindtap="goToProducts">
+          <view class="quick-icon icon-blue"><text class="iconfont">📦</text></view>
+          <text class="quick-text">商品管理</text>
+        </view>
+        <view class="quick-item" bindtap="goToInventory">
+          <view class="quick-icon icon-teal"><text class="iconfont">📋</text></view>
+          <text class="quick-text">库存管理</text>
+        </view>
+        <view class="quick-item" bindtap="goToPurchaseOrders">
+          <view class="quick-icon icon-purple"><text class="iconfont">📥</text></view>
+          <text class="quick-text">采购订单</text>
+        </view>
+        <view class="quick-item" bindtap="goToSalesOrders">
+          <view class="quick-icon icon-orange"><text class="iconfont">📤</text></view>
+          <text class="quick-text">销售订单</text>
+        </view>
+        <view class="quick-item" bindtap="goToVin">
+          <view class="quick-icon icon-teal"><text class="iconfont">🚗</text></view>
+          <text class="quick-text">VIN查配件</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="section" wx:if="{{recentOrders.length > 0}}">
+      <view class="section-header">
+        <text class="section-title">最近订单</text>
+        <text class="section-more" bindtap="goToSalesOrders">全部 →</text>
+      </view>
+      <view class="order-list">
+        <view class="order-card" wx:for="{{recentOrders}}" wx:key="id" bindtap="goToOrderDetail" data-id="{{item.id}}">
+          <view class="order-header">
+            <text class="order-no">{{item.orderNo}}</text>
+            <text class="order-status">{{item.type}}</text>
+          </view>
+          <view class="order-body">
+            <text class="order-amount">¥{{item.totalAmount}}</text>
+            <text class="order-time">{{item.createTime}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+
+  <block wx:else>
+    <view class="section">
+      <view class="section-header">
+        <text class="section-title">快捷功能</text>
+      </view>
+      <view class="quick-grid">
+        <view class="quick-item" bindtap="goToProducts">
+          <view class="quick-icon icon-blue"><text class="iconfont">🛍️</text></view>
+          <text class="quick-text">商品浏览</text>
+        </view>
+
+        <view class="quick-item" bindtap="goToOrders">
+          <view class="quick-icon icon-purple"><text class="iconfont">📋</text></view>
+          <text class="quick-text">我的订单</text>
+        </view>
+        <view class="quick-item" bindtap="goToCart">
+          <view class="quick-icon icon-orange"><text class="iconfont">🛒</text></view>
+          <text class="quick-text">购物车</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="section">
+      <view class="section-header">
+        <text class="section-title">热门分类</text>
+      </view>
+      <view class="hot-cats">
+        <view class="hot-cat" bindtap="goToSearch" data-keyword="机油">
+          <text class="hot-icon">🛢️</text>
+          <text class="hot-name">机油</text>
+        </view>
+        <view class="hot-cat" bindtap="goToSearch" data-keyword="刹车片">
+          <text class="hot-icon">🔧</text>
+          <text class="hot-name">刹车片</text>
+        </view>
+        <view class="hot-cat" bindtap="goToSearch" data-keyword="滤芯">
+          <text class="hot-icon">🔩</text>
+          <text class="hot-name">滤芯</text>
+        </view>
+        <view class="hot-cat" bindtap="goToSearch" data-keyword="火花塞">
+          <text class="hot-icon">⚡</text>
+          <text class="hot-name">火花塞</text>
+        </view>
+        <view class="hot-cat" bindtap="goToSearch" data-keyword="轮胎">
+          <text class="hot-icon">🛞</text>
+          <text class="hot-name">轮胎</text>
+        </view>
+      </view>
+    </view>
+  </block>
+
+  <view class="section" wx:if="{{recentOrders.length === 0 && !loading && isAdmin}}">
+    <view class="empty-card">
+      <text class="empty-icon">📭</text>
+      <text class="empty-text">暂无订单数据</text>
+    </view>
+  </view>
+</view>

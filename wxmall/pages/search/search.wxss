@@ -1,0 +1,149 @@
+.search-header {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  padding: 16rpx 24rpx;
+  gap: 16rpx;
+}
+
+.search-box {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  background: #f5f5f5;
+  border-radius: 36rpx;
+  padding: 14rpx 24rpx;
+}
+
+.search-icon {
+  font-size: 28rpx;
+  margin-right: 12rpx;
+  flex-shrink: 0;
+}
+
+.search-input {
+  flex: 1;
+  font-size: 26rpx;
+}
+
+.search-clear {
+  width: 36rpx;
+  height: 36rpx;
+  background: #ccc;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20rpx;
+  flex-shrink: 0;
+}
+
+.search-cancel {
+  font-size: 28rpx;
+  color: #666;
+  flex-shrink: 0;
+}
+
+.hot-section {
+  padding: 24rpx;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.section-title {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.section-action {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+}
+
+.tag-item {
+  padding: 12rpx 28rpx;
+  background: #f5f5f5;
+  border-radius: 28rpx;
+  font-size: 26rpx;
+  color: #666;
+}
+
+.tag-item.hot {
+  background: #f0f5ff;
+  color: #1677ff;
+}
+
+.result-section {
+  padding: 0 16rpx;
+}
+
+.result-header {
+  padding: 20rpx 8rpx;
+}
+
+.result-count {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.product-grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.product-card {
+  width: calc(50% - 10rpx);
+  margin: 0 5rpx 16rpx;
+  background: #fff;
+  border-radius: 12rpx;
+  overflow: hidden;
+  box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.04);
+}
+
+.product-img {
+  width: 100%;
+  height: 340rpx;
+}
+
+.product-info {
+  padding: 16rpx;
+}
+
+.product-name {
+  font-size: 26rpx;
+  color: #333;
+  line-height: 1.4;
+  height: 72rpx;
+}
+
+.product-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12rpx;
+}
+
+.sales {
+  font-size: 22rpx;
+  color: #999;
+}
+
+.load-end {
+  text-align: center;
+  color: #ccc;
+  font-size: 24rpx;
+  padding: 30rpx 0;
+}

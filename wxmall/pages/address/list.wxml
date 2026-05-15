@@ -1,0 +1,42 @@
+<view class="page">
+  <view wx:if="{{addresses.length === 0}}" class="empty-state">
+    <text class="empty-icon">📍</text>
+    <text>暂无收货地址</text>
+    <text class="text-sm text-gray mt-10">点击下方按钮添加新地址</text>
+  </view>
+
+  <view wx:else class="addr-list">
+    <view class="addr-card" wx:for="{{addresses}}" wx:key="id"
+          bindtap="selectAddress" data-address="{{item}}">
+      <view class="addr-top">
+        <view class="addr-contact">
+          <text class="addr-name">{{item.receiverName || item.name}}</text>
+          <text class="addr-phone">{{item.receiverPhone || item.phone}}</text>
+        </view>
+        <view class="addr-tags">
+          <text class="tag tag-blue" wx:if="{{item.isDefault}}">默认</text>
+        </view>
+      </view>
+      <view class="addr-detail">
+        <text class="addr-icon-loc">📍</text>
+        <text class="addr-text">{{item.fullAddress || item.address}}</text>
+      </view>
+      <view class="addr-actions">
+        <view class="addr-action" catchtap="goEdit" data-id="{{item.id}}">
+          <text class="action-icon">✏️</text>
+          <text>编辑</text>
+        </view>
+        <view class="addr-action" catchtap="deleteAddress" data-id="{{item.id}}">
+          <text class="action-icon">🗑️</text>
+          <text>删除</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="bottom-btn safe-bottom">
+    <button class="btn-primary" bindtap="goAdd">
+      <text class="add-icon">+</text> 新增收货地址
+    </button>
+  </view>
+</view>

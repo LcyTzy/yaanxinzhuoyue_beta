@@ -1,0 +1,106 @@
+server:
+  port: 8081
+
+spring:
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:dev}
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/autoparts?useUnicode=true&characterEncoding=UTF-8&connectionCollation=utf8mb4_unicode_ci&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&tinyInt1isBit=false&sessionVariables=character_set_connection=utf8mb4,character_set_results=utf8mb4,character_set_client=utf8mb4
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:}
+    hikari:
+      connection-init-sql: SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci
+      maximum-pool-size: 20
+      minimum-idle: 5
+      idle-timeout: 600000
+      max-lifetime: 1800000
+      connection-timeout: 30000
+  
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB
+      max-request-size: 10MB
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASSWORD:}
+      database: 0
+      timeout: 5000
+      lettuce:
+        pool:
+          max-active: 20
+          max-idle: 10
+          min-idle: 5
+  
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    default-property-inclusion: non_null
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+  global-config:
+    db-config:
+      id-type: auto
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+jwt:
+  secret: ${JWT_SECRET}
+  expiration: 86400000
+
+sms:
+  aliyun:
+    access-key-id: ${SMS_ACCESS_KEY_ID:}
+    access-key-secret: ${SMS_ACCESS_KEY_SECRET:}
+    sign-name: ${SMS_SIGN_NAME:新卓阅汽车服务}
+    template-code: ${SMS_TEMPLATE_CODE:SMS_506235013}
+    enabled: ${SMS_ENABLED:false}
+
+oss:
+  aliyun:
+    enabled: ${OSS_ENABLED:false}
+    endpoint: ${OSS_ENDPOINT:oss-cn-hangzhou.aliyuncs.com}
+    access-key-id: ${OSS_ACCESS_KEY_ID:}
+    access-key-secret: ${OSS_ACCESS_KEY_SECRET:}
+    bucket-name: ${OSS_BUCKET_NAME:}
+    url-prefix: ${OSS_URL_PREFIX:https://your-bucket.oss-cn-hangzhou.aliyuncs.com}
+
+vin:
+  tanshu:
+    api-key: ${VIN_TANSHU_API_KEY:f25667d22ac7cbda025f9734e38c92fd}
+
+order:
+  timeout-cancel-minutes: 30
+  auto-confirm-days: 7
+
+logging:
+  level:
+    com.zhantu: info
+  file:
+    name: logs/autoparts-mall.log
+    max-size: 100MB
+    max-history: 30
+  pattern:
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: always

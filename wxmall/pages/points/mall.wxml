@@ -1,0 +1,31 @@
+<view class="page">
+  <view class="points-card">
+    <view class="points-bg">
+      <text class="points-label">我的积分</text>
+      <text class="points-value">{{totalPoints}}</text>
+      <view class="points-actions">
+        <button class="sign-btn {{signedToday ? 'signed' : ''}}" bindtap="signIn" disabled="{{signedToday}}">
+          {{signedToday ? '今日已签到' : '签到领积分'}}
+        </button>
+        <text class="record-link" bindtap="goPointsRecord">积分记录 ›</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="mall-section">
+    <text class="section-title">积分商城</text>
+    <view class="product-grid" wx:if="{{products.length > 0}}">
+      <view class="product-item" wx:for="{{products}}" wx:key="id" bindtap="exchange" data-item="{{item}}">
+        <image class="product-img" src="{{item.image || '/images/placeholder.png'}}" mode="aspectFill" />
+        <text class="product-name">{{item.name}}</text>
+        <view class="product-bottom">
+          <text class="product-points">{{item.points}} 积分</text>
+          <text class="exchange-btn">兑换</text>
+        </view>
+      </view>
+    </view>
+    <view class="empty" wx:if="{{!loading && products.length === 0}}">
+      <text class="empty-text">暂无兑换商品</text>
+    </view>
+  </view>
+</view>
